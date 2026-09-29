@@ -26,7 +26,7 @@ What would go wrong if the train/test split were made per cell instead of per so
 
 **Answer:**
 
-Nothing important would go wrong. Splitting per cell gives a more even split and more training examples, and since every cell is a separate image crop, the test set is still unseen data, so the scores stay just as trustworthy.
+Cells cut from the same source image (slide) would end up on both sides of the split. Those cells share the same slide, staining, lighting and focus, so at test time the model would be scored on slides it has already seen during training. The test scores would be inflated: they would overstate how well the model works on a genuinely new slide. Splitting per source image keeps every slide entirely in train or entirely in test.
 
 
 ## Q4
